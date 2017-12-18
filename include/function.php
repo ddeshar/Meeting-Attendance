@@ -3,7 +3,7 @@
     function sendlinemesg() {
                         
         define('LINE_API',"https://notify-api.line.me/api/notify");
-        define('LINE_TOKEN','4Ni9Q5SYM7KLXxRdTUfDS36F6LdGXziVrvA75TaCvpq'); // line token
+        define('LINE_TOKEN','xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'); // line token
 
         function notify_message($message){
 
