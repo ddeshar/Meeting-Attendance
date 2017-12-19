@@ -48,7 +48,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <h3 class="card-title">แก้ ชื่อวัด</h3>
+      <h3 class="card-title">ประวัติพระ <?=$name?> <?=$chaya?> <?=$lastname?></h3>
       <div class="card-body">
 
         <div class="row">
