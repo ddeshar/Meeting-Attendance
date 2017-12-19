@@ -3,9 +3,7 @@ $page = 'members';
 $title = 'members';
 $css = <<<EOT
     <!--page level css -->
-        <link href="assets/css/datetimepicker/bootstrap.css" rel="stylesheet" media="screen">
-
-        <link href="assets/css/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+        <link href="assets/css/datepicker.css" rel="stylesheet" media="screen">
     <!--end of page level css-->
 EOT;
   include 'include/_header.php';
@@ -46,45 +44,45 @@ EOT;
 <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">$('#sampleTable').DataTable();</script>
-
-<script type="text/javascript" src="assets/js/plugins/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="assets/js/plugins/datetimepicker/bootstrap-datetimepicker.th.js" charset="UTF-8"></script>
-<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        language:  'th',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        format: 'yyyy-mm-dd hh:ii',
-        showMeridian: 1,
-        yearOffset:543
-    }).datepicker("setDate", "0");
-</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-    function readURL(input) {
-
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-          $('#blah').attr('src', e.target.result);
+<?php 
+echo $source;
+if($source == "add_member" || $source == "edit_member"){ ?>
+  <!-- preview pic before upload -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  
+      function readURL(input) {
+  
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+  
+          reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
+          }
+  
+          reader.readAsDataURL(input.files[0]);
         }
-
-        reader.readAsDataURL(input.files[0]);
       }
-    }
-
-    $("#imgInp").change(function() {
-      readURL(this);
-    });
-</script>
-
-
-
+  
+      $("#imgInp").change(function() {
+        readURL(this);
+      });
+  </script>
+  <!-- Thai date picker -->
+    <script src="assets/js/plugins/datepicker/bootstrap-datepicker-custom.js"></script>
+    <script src="assets/js/plugins/datepicker/locales/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy/mm/dd',
+                autoclose: true,
+                todayBtn: true,
+                language: 'th',             //เปลี่ยน label ต่างของ ปฏิทิน ให้เป็น ภาษาไทย   (ต้องใช้ไฟล์ bootstrap-datepicker.th.min.js นี้ด้วย)
+                thaiyear: true              //Set เป็นปี พ.ศ.
+            });  //กำหนดเป็นวันปัจุบัน
+            // }).datepicker("setDate", "0");  //กำหนดเป็นวันปัจุบัน
+        });
+    </script>
+<?php } ?>  
 </body>
 </html>

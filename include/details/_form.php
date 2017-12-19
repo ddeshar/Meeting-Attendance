@@ -76,9 +76,6 @@
                                 </div>";
                          }
                        ?>
-                       
-                        <input type="checkbox" class="chk_boxes" label="check all"  />check all
-                        <input type="checkbox" class="unchk_boxes"   /> un-check all
                     </div>
                   </div>
             <div class="card-footer">

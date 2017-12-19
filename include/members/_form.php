@@ -42,25 +42,18 @@
           </div>
 
           <div class="form-group">
-            <label for="dtp_input1" class="control-label col-md-3">ว/ด/ป เกิด :</label>
-            <div class="input-group date form_datetime col-md-8" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
-              <input class="form-control" size="16" name="dob" type="text" value="<?=$dob?>" readonly>
-              <span class="input-group-addon"><span class="fa fa-times"></span></span>
-              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+            <label class="control-label col-md-3">ว/ด/ป เกิด :</label>
+            <div class="col-md-8">
+              <input id="inputdatepicker" name="dob" value="<?=$dob?>" class="form-control col-md-8 datepicker" data-date-format="yyyy/mm/dd">
             </div>
-            <input type="hidden" id="dtp_input1" value="" />
           </div>
 
           <div class="form-group">
-            <label for="dtp_input1" class="control-label col-md-3">ว/ด/ป บวช :</label>
-            <div class="input-group date form_datetime col-md-8" data-date-format="yyyy MM dd - HH:ii p" data-link-field="dtp_input1">
-              <input class="form-control" size="16" name="dou" type="text" value="<?=$dou?>" readonly>
-              <span class="input-group-addon"><span class="fa fa-times"></span></span>
-              <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+            <label class="control-label col-md-3">ว/ด/ป บวช :</label>
+            <div class="col-md-8">
+              <input id="inputdatepicker" name="dou" value="<?=$dou?>" class="form-control col-md-8 datepicker" data-date-format="yyyy/mm/dd">
             </div>
-            <input type="hidden" id="dtp_input1" value="" />
           </div>
-
 
           <div class="form-group">
             <label class="col-lg-3 control-label" for="select">ตำแหน่ง</label>
@@ -144,3 +137,4 @@
           <?php } ?>
 
         </form>
+        
