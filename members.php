@@ -20,31 +20,22 @@ EOT;
             $source = '';
           }
 
-          switch ($source) {
-            case 'add_member';
-            include "include/members/member_add.php";
-            break;
+            if ($source == "add_member") {
+              include "include/members/member_add.php";
 
-            case 'edit_member':
-            include "include/members/member_edit.php";
-            break;
-                        
-            case 'member_detail':
-            include "include/members/member_detail.php";
-            break;
+            } else if($source == "edit_member"){
+              include "include/members/member_edit.php";
 
-            case 'wat':
-            include "include/members/view_all_members.php";
-            break;
-            
-            case 'position':
-            include "include/members/view_all_members.php";
-            break;
-            
-            default:
-            include "include/members/view_all_members.php";
-            break;
-          }
+            } else if($source == "member_detail"){
+              include "include/members/member_detail.php";
+
+            }else if($source == "position" && $source == "wat"){
+              include "include/members/view_all_members.php";
+
+            }else{
+              include "include/members/view_all_members.php";
+            }
+          
         ?>
       </div>
 
