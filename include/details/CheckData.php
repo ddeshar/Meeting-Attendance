@@ -2,7 +2,6 @@
     // include_once dirname($_SERVER['DOCUMENT_ROOT']) .'/meeting/include/function.php';  // for server
     include_once dirname($_SERVER['PHP_SELF']) .'/include/function.php'; // For local
 
-
     if (isset($_POST["check"])) {
         $check = $_POST["check"];
         $pid = $_POST["pid"];
@@ -30,7 +29,8 @@
             $photo = $row["photo"];
             $wat = $row["wat_name"];
             $position = $row["position_name"];
-            $date = date("D M d, Y G:i");
+
+            $date = date("d-m-Y H:i:s");
 
             $sql = "INSERT INTO `time` (`members_nationalid`, `date_scan`,`detail_id`) VALUES ('$check', CURRENT_TIMESTAMP, '$pid')";
             // echo $sql; exit;
@@ -38,7 +38,7 @@
 
             if ($result) {
                 // Code for sending message on line
-                $message = $mesg."\n".'ชื่อ: '.$name."\n".'วัด: '.$wat."\n".'ตำแหน่ง: '.$position."\n".'มาแล้ครับผม: '."\n".'เวลา: '.$date;
+                $message = $mesg."\n".'ชื่อ: '.$name."\n".'วัด: '.$wat."\n".'ตำแหน่ง: '.$position."\n".'มาแล้ครับผม :) '."\n".'เวลา: '.DateThai($date);
                 sendlinemesg();
                 // header('Content-Type: text/html; charset=utf-8');
                 $res = notify_message($message);
@@ -78,37 +78,37 @@
 
 ?>
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-12">
     <div class="card">
 
-    <div class="text-center">
+            <div class="text-center">
 
-        <?php if($dublicate){ ?>
-            <div class="bs-component">
-                <div class="alert alert-dismissible alert-danger">
-                    <button class="close" type="button" data-dismiss="alert">×</button><?=$dublicate?>
-                </div>
-            </div>
-        <?php }else if($error){ ?>
-            <div class="bs-component">
-                <div class="alert alert-dismissible alert-danger">
-                    <button class="close" type="button" data-dismiss="alert">×</button><?=$error?>
-                </div>
-            </div>
-        <?php }else if($test){ ?>
-            <div class="bs-component">
-                <div class="alert alert-dismissible alert-danger">
-                    <button class="close" type="button" data-dismiss="alert">×</button><?=$test?>
-                </div>
-            </div>
-        <?php } ?>
+                <?php if($dublicate){ ?>
+                    <div class="bs-component">
+                        <div class="alert alert-dismissible alert-danger">
+                            <button class="close" type="button" data-dismiss="alert">×</button><?=$dublicate?>
+                        </div>
+                    </div>
+                <?php }else if($error){ ?>
+                    <div class="bs-component">
+                        <div class="alert alert-dismissible alert-danger">
+                            <button class="close" type="button" data-dismiss="alert">×</button><?=$error?>
+                        </div>
+                    </div>
+                <?php }else if($test){ ?>
+                    <div class="bs-component">
+                        <div class="alert alert-dismissible alert-danger">
+                            <button class="close" type="button" data-dismiss="alert">×</button><?=$test?>
+                        </div>
+                    </div>
+                <?php } ?>
 
-        <h3 class="card-title">การประชุมพระสังฆาธิการ,<br><br> ในเขตปกครองคณะสงฆ์อำเภอเมืองฉะเชิงเทรา </h3>
-        <h4>เรื่อง <?=$subject?> </h4>
-        <h4>ในวันที่  <?=$date?> </h4>
-        <h4>ณ สำนักงานเจ้าคณะอำเภอเมืองฉะเชิงเทรา</h4>
-        <h4>วัดบางปรงธรรมโชติการราม ตำบลบางพระ อำเภอเมืองฉะเชิงเทรา จังหวัดฉะเชิงเทรา</h4>
-    </div>
+                <h3 class="card-title">การประชุมพระสังฆาธิการ,<br><br> ในเขตปกครองคณะสงฆ์อำเภอเมืองฉะเชิงเทรา </h3>
+                <h4>เรื่อง <?=$subject?> </h4>
+                <h4>ในวันที่  <?=$date?> </h4>
+                <h4>ณ สำนักงานเจ้าคณะอำเภอเมืองฉะเชิงเทรา</h4>
+                <h4>วัดบางปรงธรรมโชติการราม ตำบลบางพระ อำเภอเมืองฉะเชิงเทรา จังหวัดฉะเชิงเทรา</h4>
+            </div>
 
         <div class="card-body">
              <form action="" method="post">
@@ -119,26 +119,60 @@
             <div class="profile">
                 <div class="info">
 
-                <div class="row">
-                  <div class="col-lg-3">
-                    <div class="bs-component">
-                        <?php 
-                            if (isset($photo) && !empty($photo)) {
-                                echo "<img src='assets/images/" . $photo . "' width='200' height='auto'></a></td>";
-                            } else {
-                                echo "<img src='assets/images/newa.png' width ='150' height = 'auto'></a></td>";
-                            }
-                        ?>
+                    <div class="row">
+
+                        <div class="col-lg-8">
+                            <div class="widget-small primary coloured-icon">
+                            <?php 
+                                        if (isset($photo) && !empty($photo)) {
+                                            echo "<img src='assets/images/" . $photo . "' width='auto' height='200px'></a></td>";
+                                        } else {
+                                            echo "<img src='assets/images/newa.png' width ='auto' height = '200px'></a></td>";
+                                        }
+                                    ?>
+                                    <!-- <i class="icon fa fa-users fa-3x"></i> -->
+                                <div class="info">
+                                    <h4>ชื่อ : <?=$name?></h4>
+                                    <p>วัด : <?=$wat?></p>
+                                    <p>ตำแหน่ง :<?=$position?></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="bs-component">
+                                <?php 
+                                    $notpresent = " SELECT
+                                                        members.`name`,
+                                                        members.chaya,
+                                                        members.lastname
+                                                    FROM
+                                                        members
+                                                    LEFT JOIN meeting_mems ON meeting_mems.meeting_nationalid = members.nationalid
+                                                    WHERE
+                                                        meeting_mems.meeting_detail_id = '$detail_id'
+                                                    AND meeting_mems.meeting_nationalid NOT IN (
+                                                        ( SELECT members_nationalid FROM time WHERE
+                                                                detail_id = '$detail_id' ) )";
+                                    $result = mysqli_query($conn, $notpresent);
+
+                                    if (mysqli_num_rows($result) > 0) {
+                                        // output data of each row
+                                        echo "<div class=\"alert alert-danger\">";
+                                        echo "<h3 class=\"text-center\"> คนที่ยังไม่มาประชุม</h3>";
+                                        while($row = mysqli_fetch_assoc($result)) {
+                                            echo "<p class=\"text-right\">" . $row["name"]. " " . $row["chaya"]. " " . $row["lastname"]. "</p>";
+                                        }
+                                        echo "</div>";
+                                    } else {
+                                        echo "<div class=\"alert alert-success\">";
+                                        echo "<h3 class=\"text-center\"> มาประชุม ครบแล้วครบผม</h3>";
+                                        echo "</div>";
+                                    }
+                                ?>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="bs-component">
-                        <h4>ชื่อ : <?=$name?></h4>
-                        <p>วัด : <?=$wat?></p>
-                        <p>ตำแหน่ง :<?=$position?></p>
-                    </div>
-                  </div>
-                </div>
             
                 </div>
             </div>

@@ -5,16 +5,28 @@
     $president = $_POST["president"];
     $date = $_POST["date"];
     $note = $_POST["note"];
-
-    $sql = "INSERT INTO detail (`subject`,`agenda`,`president`,`date`,`note`) VALUES('$subject','$agenda','$president','$date','$note')";
+    $invite = $_POST['invite'];
+    
+    $sql = "INSERT INTO detail (subject,`agenda`,`president`,`date`,`note`) VALUES('$subject','$agenda','$president','$date','$note')";
     $result = mysqli_query($conn, $sql);
-    if ($result) {
+    
+    $last_id = mysqli_insert_id($conn);
+    
+    $sqlinvite = 'INSERT INTO meeting_mem (meeting_nationalid, meeting_detail_id) VALUES ';
+      $tmp = array();
+        foreach ($invite as $invite_id => $void) {
+          $tmp[] = "($void, $last_id)";
+        }
+    $sqlinvite .= implode("\n,   ", $tmp).';';    
+    $resultinvite = mysqli_query($conn, $sqlinvite);
+
+    if ($resultinvite) {
       echo "<script type='text/javascript'>";
       echo "alert('เพิมเสร็จแล้ว');";
       echo "window.location='details.php';";
       echo "</script>";
     }else{
-      die("Query Failed" . mysqli_error($conn));
+      die("Query Failed " . mysqli_error($conn));
     }
   }
 ?>
