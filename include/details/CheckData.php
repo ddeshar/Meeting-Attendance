@@ -1,7 +1,4 @@
 <?php
-    // include_once dirname($_SERVER['DOCUMENT_ROOT']) .'/meeting/include/function.php';  // for server
-    include_once dirname($_SERVER['PHP_SELF']) .'/include/function.php'; // For local
-
     if (isset($_POST["check"])) {
         $check = $_POST["check"];
         $pid = $_POST["pid"];
@@ -148,10 +145,10 @@
                                                         members.lastname
                                                     FROM
                                                         members
-                                                    LEFT JOIN meeting_mems ON meeting_mems.meeting_nationalid = members.nationalid
+                                                    LEFT JOIN meeting_mem ON meeting_mem.meeting_nationalid = members.nationalid
                                                     WHERE
-                                                        meeting_mems.meeting_detail_id = '$detail_id'
-                                                    AND meeting_mems.meeting_nationalid NOT IN (
+                                                        meeting_mem.meeting_detail_id = '$detail_id'
+                                                    AND meeting_mem.meeting_nationalid NOT IN (
                                                         ( SELECT members_nationalid FROM time WHERE
                                                                 detail_id = '$detail_id' ) )";
                                     $result = mysqli_query($conn, $notpresent);

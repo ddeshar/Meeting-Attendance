@@ -1,8 +1,12 @@
 <?php
 	include "dbconnect.php";
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-include 'session.php';
+    // include_once dirname($_SERVER['DOCUMENT_ROOT']) .'/meeting/include/function.php';  // for server
+    include_once dirname($_SERVER['PHP_SELF']) .'/include/function.php'; // For local
+    include 'session.php';
+    if(isset($_SESSION['user_id'])) {
+    } else {
+      header("location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="th">
