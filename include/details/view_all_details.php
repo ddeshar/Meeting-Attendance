@@ -22,7 +22,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
-        <table class="table table-hover table-bordered" id="sampleTable">
+        <table class="table table-hover table-bordered" id="sampleTable1">
           <thead>
             <tr>
               <th>ที่</th>
@@ -55,10 +55,8 @@
 										<td>$subject</td>
 										<td>$date</td>
 										<td>$note</td>
-                    <td><a href='details.php?source=detail_edit&id=$detail_id'>แก้ไข</a> |
-                    <a href='details.php?source=check&id=$detail_id'>สแกนบัตร</a> | 
-                    <a href='details.php?source=present&id=$detail_id'>มาประชุม</a> |
-                    <a href='details.php?source=absent&id=$detail_id'>ขาดประชุม</a>
+                    <td><a href='details.php?source=check&id=$detail_id'>สแกนบัตร</a> | 
+                    <a href='details.php?source=result&id=$detail_id'>สรุป</a>
                     </td>
 									</tr>";
 							}

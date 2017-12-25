@@ -1,8 +1,8 @@
 <?php
-	include "dbconnect.php";
-    // include_once dirname($_SERVER['DOCUMENT_ROOT']) .'/meeting/include/function.php';  // for server
+    include "dbconnect.php";
+    //  include_once dirname($_SERVER['DOCUMENT_ROOT']) .'/meeting/include/function.php';  // for server
     include_once dirname($_SERVER['PHP_SELF']) .'/include/function.php'; // For local
-    include 'session.php';
+    include "session.php";
     if(isset($_SESSION['user_id'])) {
     } else {
       header("location: index.php");
@@ -24,14 +24,6 @@
         <style>
             th, td, p, a, h1, h2, h3,h4,h5,h6, .h2{
                 font-family: 'Kanit', sans-serif !important;
-                /* line-height: 1.6em; */
-            }
-            a{
-                /* font-size: 1.4em; */
-            }
-            label{
-                /* font-size: 1.6em; */
-                /* display: block; */
             }
         </style>
 		<!-- end of global css -->

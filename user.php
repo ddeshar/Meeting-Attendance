@@ -18,19 +18,15 @@ EOT;
             $source = '';
           }
 
-          switch ($source) {
-            case 'user_add';
-            include "include/users/user_add.php";
-            break;
+            if ($source == "user_add") {
+              include "include/users/user_add.php";
 
-            case 'user_edit':
-            include "include/users/user_edit.php";
-            break;
-
-            default:
-            include "include/users/view_all_users.php";
-            break;
-          }
+            } else if ($source == "user_edit"){
+              include "include/users/user_edit.php";
+              
+            }else{
+              include "include/users/view_all_users.php";
+            }
         ?>
       </div>
 

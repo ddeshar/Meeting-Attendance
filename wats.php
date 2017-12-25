@@ -18,19 +18,15 @@ EOT;
             $source = '';
           }
 
-          switch ($source) {
-            case 'wat_add';
-            include "include/wats/wat_add.php";
-            break;
+            if ($source == "wat_add") {
+              include "include/wats/wat_add.php";
 
-            case 'wat_edit':
-            include "include/wats/wat_edit.php";
-            break;
-
-            default:
-            include "include/wats/view_all_wats.php";
-            break;
-          }
+            } else if ($source == "wat_edit") {
+              include "include/wats/wat_edit.php";
+              
+            } else {
+              include "include/wats/view_all_wats.php";
+            }
         ?>
       </div>
 

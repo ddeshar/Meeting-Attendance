@@ -20,57 +20,51 @@ EOT;
             $source = '';
           }
 
-          switch ($source) {
-            case 'detail_add';
-            include "include/details/detail_add.php";
-            break;
+            if ($source == "detail_add") {
+              include "include/details/detail_add.php";
 
-            case 'detail_edit':
-            include "include/details/detail_edit.php";
-            break;
+            // } else if ($source == "detail_edit") {
+            //   include "include/details/detail_edit.php";
 
-            case 'check':
-            include "include/details/CheckData.php";
-            break;
+            } else if ($source == "check") {
+              include "include/details/CheckData.php";
 
-            case 'present':
-            include "include/details/Resultpresent.php";
-            break;
-            
-            case 'absent':
-            include "include/details/Resultabsent.php";
-            break;
+            } else if ($source == "result") {
+              include "include/details/Result.php";
 
-            default:
-            include "include/details/view_all_details.php";
-            break;
-          }
+            // } else if ($source == "view_times") {
+            //   include "include/details/view_times.php";
+
+            } else if ($source == "pdf") {
+              include "include/details/_pdf.php";
+              
+            } else {
+              include "include/details/view_all_details.php";
+            }
         ?>
       </div>
-
-
 <?php
   include 'include/_footer.php';
 ?>
 
 <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
-
-<script type="text/javascript" src="assets/js/plugins/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="assets/js/plugins/datetimepicker/bootstrap-datetimepicker.th.js" charset="UTF-8"></script>
-<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        language:  'th',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        format: 'yyyy-mm-dd hh:ii',
-        showMeridian: 1,
-    }).datepicker("setDate", "0");
-</script>
-
+<?php if ($source == "detail_add") { ?>
+  <script type="text/javascript" src="assets/js/plugins/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="assets/js/plugins/datetimepicker/bootstrap-datetimepicker.th.js" charset="UTF-8"></script>
+  <script type="text/javascript">
+      $('.form_datetime').datetimepicker({
+          language:  'th',
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          forceParse: 0,
+          format: 'yyyy-mm-dd hh:ii',
+          showMeridian: 1,
+      }).datepicker("setDate", "0");
+  </script>
+<?php } ?>
 </body>
 </html>

@@ -12,8 +12,7 @@
                         members.photo,
                         members.position,
                         members.wat
-                    FROM
-                        members
+                    FROM members
                     INNER JOIN positions ON members.position = positions.position_id
                     INNER JOIN wats ON members.wat = wats.wat_id
                     WHERE `nationalid` = '$check'";
@@ -30,12 +29,12 @@
             $date = date("d-m-Y H:i:s");
 
             $sql = "INSERT INTO `time` (`members_nationalid`, `date_scan`,`detail_id`) VALUES ('$check', CURRENT_TIMESTAMP, '$pid')";
-            // echo $sql; exit;
+
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
                 // Code for sending message on line
-                $message = $mesg."\n".'ชื่อ: '.$name."\n".'วัด: '.$wat."\n".'ตำแหน่ง: '.$position."\n".'มาแล้ครับผม :) '."\n".'เวลา: '.DateThai($date);
+                $message = $mesg."\n".'ชื่อ: '.$name."\n".'วัด: '.$wat."\n".'ตำแหน่ง: '.$position."\n".'มาแล้วครับผม :) '."\n".'เวลา: '.DateThai($date);
                 sendlinemesg();
                 // header('Content-Type: text/html; charset=utf-8');
                 $res = notify_message($message);
@@ -100,11 +99,10 @@
                     </div>
                 <?php } ?>
 
-                <h3 class="card-title">การประชุมพระสังฆาธิการ,<br><br> ในเขตปกครองคณะสงฆ์อำเภอเมืองฉะเชิงเทรา </h3>
+                <h3 class="card-title">การประชุมพระสังฆาธิการ, ในเขตปกครองคณะสงฆ์อำเภอเมืองฉะเชิงเทรา </h3>
                 <h4>เรื่อง <?=$subject?> </h4>
                 <h4>ในวันที่  <?=$date?> </h4>
-                <h4>ณ สำนักงานเจ้าคณะอำเภอเมืองฉะเชิงเทรา</h4>
-                <h4>วัดบางปรงธรรมโชติการราม ตำบลบางพระ อำเภอเมืองฉะเชิงเทรา จังหวัดฉะเชิงเทรา</h4>
+                <h4>ณ สำนักงานเจ้าคณะอำเภอเมืองฉะเชิงเทรา วัดบางปรงธรรมโชติการราม ตำบลบางพระ อำเภอเมืองฉะเชิงเทรา จังหวัดฉะเชิงเทรา</h4>
             </div>
 
         <div class="card-body">
@@ -120,18 +118,17 @@
 
                         <div class="col-lg-8">
                             <div class="widget-small primary coloured-icon">
-                            <?php 
+                                    <?php 
                                         if (isset($photo) && !empty($photo)) {
-                                            echo "<img src='assets/images/" . $photo . "' width='auto' height='200px'></a></td>";
+                                            echo "<img src='assets/images/" . $photo . "' width='auto' height='300px'></a></td>";
                                         } else {
-                                            echo "<img src='assets/images/newa.png' width ='auto' height = '200px'></a></td>";
+                                            echo "<img src='assets/images/newa.png' width ='auto' height = '300px'></a></td>";
                                         }
                                     ?>
-                                    <!-- <i class="icon fa fa-users fa-3x"></i> -->
                                 <div class="info">
-                                    <h4>ชื่อ : <?=$name?></h4>
-                                    <p>วัด : <?=$wat?></p>
-                                    <p>ตำแหน่ง :<?=$position?></p>
+                                    <h1>ชื่อ : <?=$name?></h1>
+                                    <h1>วัด : <?=$wat?></h1>
+                                    <h1>ตำแหน่ง :<?=$position?></h1>
                                 </div>
                             </div>
                         </div>
@@ -139,18 +136,12 @@
                         <div class="col-lg-4">
                             <div class="bs-component">
                                 <?php 
-                                    $notpresent = " SELECT
-                                                        members.`name`,
-                                                        members.chaya,
-                                                        members.lastname
-                                                    FROM
-                                                        members
+                                    $notpresent = " SELECT members.`name`, members.chaya, members.lastname
+                                                    FROM members
                                                     LEFT JOIN meeting_mem ON meeting_mem.meeting_nationalid = members.nationalid
-                                                    WHERE
-                                                        meeting_mem.meeting_detail_id = '$detail_id'
+                                                    WHERE meeting_mem.meeting_detail_id = '$detail_id'
                                                     AND meeting_mem.meeting_nationalid NOT IN (
-                                                        ( SELECT members_nationalid FROM time WHERE
-                                                                detail_id = '$detail_id' ) )";
+                                                        ( SELECT members_nationalid FROM time WHERE detail_id = '$detail_id' ) )";
                                     $result = mysqli_query($conn, $notpresent);
 
                                     if (mysqli_num_rows($result) > 0) {

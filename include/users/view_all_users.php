@@ -44,7 +44,7 @@
 								$username = $row["username"];
 								$email = $row["email"];
 								$status = $row["status"];
-?>
+            ?>
 								<tr>
 										<td><?=$i++?></td>
 										<td><?=$username?></td>

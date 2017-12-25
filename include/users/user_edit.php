@@ -56,7 +56,6 @@
       $firstname = $row["firstname"];
       $lastname = $row["lastname"];
       $username = $row["username"];
-      $password = $row["password"];
       $email = $row["email"];
       $status = $row["status"];
       $avatar = $row["avatar"];
@@ -65,7 +64,6 @@
       $firstname = "";
       $lastname = "";
       $username = "";
-      $password = "";
       $email = "";
       $status = "";
       $avatar = "";
@@ -103,7 +101,7 @@
           <div class="form-group">
             <label class="control-label col-md-3">Password :</label>
             <div class="col-md-8">
-              <input class="form-control col-md-8" name="password"  value="<?php echo "$password"; ?>" type="password">
+              <input class="form-control col-md-8" name="password" type="password">
             </div>
           </div>
           <div class="form-group">
